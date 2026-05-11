@@ -10,6 +10,23 @@ symbol_count={
     "C":6,
     "D":8
 }
+def get_slot_mek_spin(rows,cols,symbols):
+    all_symbols=[]
+    for symbol,symbol_count in symbols.item():
+        for _ in range(symbol_count):
+            all_symbols.append(symbol)
+    columns=[]
+    for _ in range(cols):
+        column=[]
+        curr_symbols=all_symbols[:]
+        for _ in range(rows):
+            value=random.choice(curr_symbols)
+            curr_symbols.remove(value)
+            column.append(value)
+        columns.append(column)
+    return columns
+def print_slot_mek(columns):
+    
 def deposit():
     while True:
         amount=input("What would you like to deposit[$]: ")
