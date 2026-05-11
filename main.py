@@ -12,7 +12,7 @@ symbol_count={
 }
 def get_slot_mek_spin(rows,cols,symbols):
     all_symbols=[]
-    for symbol,symbol_count in symbols.item():
+    for symbol,symbol_count in symbols.items():
         for _ in range(symbol_count):
             all_symbols.append(symbol)
     columns=[]
@@ -26,7 +26,13 @@ def get_slot_mek_spin(rows,cols,symbols):
         columns.append(column)
     return columns
 def print_slot_mek(columns):
-    
+    for row in range(len(columns[0])):
+        for i,column in enumerate(columns):
+            if i!=len(columns)-1:
+                print(column[row],end=" | ")
+            else:
+                print(column[row],end="")
+        print()
 def deposit():
     while True:
         amount=input("What would you like to deposit[$]: ")
@@ -77,4 +83,6 @@ def main():
             break
     print(f"You are betting ${bet} on {lines} lines. Total bet is equal to: ${total_bet}")
     print(balance,lines)
+    slots=get_slot_mek_spin(ROWS,COLS,symbol_count)
+    print_slot_mek(slots)
 main()
