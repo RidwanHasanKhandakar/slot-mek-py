@@ -10,6 +10,25 @@ symbol_count={
     "C":6,
     "D":8
 }
+symbol_value={
+    "A":5,
+    "B":4,
+    "C":3,
+    "D":2
+}
+def check_winnings(columns,lines,bet,values):
+    winnnings=0
+    winning_lines=[]
+    for line in range(lines):
+        symbol=columns[0][line]
+        for column in columns:
+            symbol_to_check = column[line]
+            if symbol!=symbol_to_check:
+                break
+        else:
+            winnnings+=values[symbol]*bet
+            winning_lines.append(line+1)
+    return winnnings,winning_lines
 def get_slot_mek_spin(rows,cols,symbols):
     all_symbols=[]
     for symbol,symbol_count in symbols.items():
@@ -85,4 +104,7 @@ def main():
     print(balance,lines)
     slots=get_slot_mek_spin(ROWS,COLS,symbol_count)
     print_slot_mek(slots)
+    winnings,winnig_lines=check_winnings(slots,lines,bet,symbol_value)
+    print(f"YOU WON {winnings}$$")
+    print(f"YOU WON ON LINES -> ",*winnig_lines)
 main()
