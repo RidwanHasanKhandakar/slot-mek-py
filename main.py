@@ -91,6 +91,9 @@ def get_bet():
 
     return amount
 def spin(balance):
+    if balance<=0:
+        print("You have no money left!")
+        return 0
     lines=get_number_of_lines()
     while True:
         bet = get_bet()
@@ -110,6 +113,9 @@ def spin(balance):
 def main():
     balance = deposit()
     while True:
+        if balance<=0:
+            print("You ran out of money!")
+            break
         print(f"Current balance is: {balance}$")
         spin_var=input("Press Enter to Spin: (q) to quit")
         if spin_var =='q':
